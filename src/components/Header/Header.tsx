@@ -1,7 +1,15 @@
+import AuthLink from './AuthLink';
+import Logo from './Logo';
+import Navbar from './Navbar';
+
 const Header = () => {
   return (
-    <header className="container">
-      <h1 className="text-lg font-bold underline text-indigo-700 bg-slate-900">Hello world!</h1>
+    <header className="bg-zinc-900">
+      <div className="flex justify-between items-center container">
+        <Logo />
+        <Navbar />
+        <AuthLink />
+      </div>
     </header>
   );
 };
