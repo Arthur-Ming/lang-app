@@ -3,6 +3,7 @@ import { useLoadUserWordsQuery } from '@/redux/api/userWords';
 import clientRoutes from '@/utils/clientRoutes';
 import { useEffect } from 'react';
 import { Navigate, useMatch } from 'react-router';
+import TextbookView from './TextbookView';
 
 const Textbook = () => {
   const { page, group } = useTextbookPageParams();
@@ -23,8 +24,7 @@ const Textbook = () => {
     return <Navigate to={clientRoutes.textbook.words.absolute(page, group)} replace />;
   }
 
-  /*   return <TextbookView />;  */
-  return <div>Textbook</div>;
+  return <TextbookView />;
 };
 
 export default Textbook;

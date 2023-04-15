@@ -1,4 +1,4 @@
-import { IWord } from '../../interfaces';
+import { IWord } from '@/types';
 import { api } from './';
 
 interface ILoadWordsParams {

@@ -74,6 +74,12 @@
       ],
       "@utils/*": [
         "src/utils/*"
+      ],
+      "@Loader/*": [
+        "src/components/Loader/*"
+      ],
+      "@types/*": [
+        "src/types/*"
       ]
     }
   },
