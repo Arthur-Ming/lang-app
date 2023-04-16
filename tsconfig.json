@@ -80,6 +80,9 @@
       ],
       "@types/*": [
         "src/types/*"
+      ],
+      "@Modal/*": [
+        "src/components/Modal/*"
       ]
     }
   },

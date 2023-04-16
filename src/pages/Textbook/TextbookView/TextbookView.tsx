@@ -6,12 +6,12 @@ import TextbookWords from '../TextbookWords';
 
 const TextbookView = () => (
   <main className="flex-auto">
-    <div className="w-full">
+    <div className="">
       {/*    <TextbookHeader /> */}
-      <div className="w-full">
+      <div className="">
         {/*  <TextbookSidebar /> */}
         {/*   <ArrowButton prev /> */}
-        <TextbookWords />
+        <Outlet />
         {/*   <ArrowButton /> */}
       </div>
       {/* <TextbookFooter /> */}

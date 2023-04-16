@@ -6,24 +6,18 @@ import Header from '@components/Header';
 import Textbook from '@pages/Textbook';
 import clientRoutes from '@/utils/clientRoutes';
 import TextbookWords from '@pages/Textbook/TextbookWords';
+import TextbookWord from '@pages/Textbook/TextbookWords/TextbookWord';
 
 const App = () => (
-  <div className="relative min-h-screen w-full flex flex-col bg-zinc-800">
+  <div className="relative min-h-screen w-full flex flex-col bg-main-dark">
     <Router>
       <Header />
       <Routes>
         <Route index element={<Main />} />
         <Route path={`${clientRoutes.textbook.absolute()}/*`} element={<Textbook />}>
-          <Route
-            path={`${clientRoutes.textbook.words.relative()}/*`}
-            element={<TextbookWords />}
-          ></Route>
-          {/*  <Route path={`${clientRoutes.textbook.words.relative()}/*`} element={<TextbookWords />}>
+          <Route path={`${clientRoutes.textbook.words.relative()}/*`} element={<TextbookWords />}>
             <Route path={`:wordId`} element={<TextbookWord />} />
           </Route>
-          <Route path={`user-words/*`} element={<UserWords />}>
-            <Route path={`:wordId`} element={<UserWord />} />
-          </Route> */}
         </Route>
       </Routes>
       <Footer />

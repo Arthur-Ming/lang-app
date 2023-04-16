@@ -15,14 +15,14 @@ const WordTicket = ({ word }: Props) => {
 
   return (
     <div
-      className="relative flex h-14 items-center justify-between gap-x-14 bg-zinc-900 rounded-lg"
+      className="relative flex h-14 items-center justify-between gap-x-14 bg-section-dark rounded-lg"
       onClick={() => navigate(wordId)}
     >
       <div className="flex items-center gap-x-10">
         <div className="h-14 rounded-md overflow-hidden">
           <img className="w-full h-full object-cover" src={apiRoutes.files(image)} alt={wordText} />
         </div>
-        <h3 className="text-2xl text-zinc-400">{`${wordText} - ${transcription} - ${wordTranslate}`}</h3>
+        <h3 className="text-2xl text-gray-200">{`${wordText} - ${transcription} - ${wordTranslate}`}</h3>
       </div>
 
       <div className="">
