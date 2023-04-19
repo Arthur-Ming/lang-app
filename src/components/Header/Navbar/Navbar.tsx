@@ -29,7 +29,7 @@ const NavBar = () => (
             className={({ isActive }) =>
               classNames('relative flex gap-x-2 hover:opacity-80 ease-linear duration-200', {
                 'text-gray-200': !isActive,
-                'text-gray-100 after:content-[""] after:absolute after:w-full after:h-0.5 after:bg-high after:top-8':
+                'text-gray-100 after:content-[""] after:absolute after:w-full after:h-0.5 after:bg-highlite after:top-8':
                   isActive,
               })
             }

@@ -1,9 +1,8 @@
 import TextbookPagesPagination from '../TextbookPagesPagination';
-import styles from './index.module.scss';
 
 const TextbookHeader = () => (
-  <div className={styles.root}>
-    <h2>Textbook</h2>
+  <div className="flex items-center justify-between">
+    <h2 className="text-3xl text-gray-200 font-bold">Textbook</h2>
     <TextbookPagesPagination />
   </div>
 );

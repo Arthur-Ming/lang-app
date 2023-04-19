@@ -1,9 +1,8 @@
 import TextbookPagesPagination from '../TextbookPagesPagination';
-import styles from './index.module.scss';
 
 const TextbookFooter = () => (
-  <div className={styles.root}>
-    <TextbookPagesPagination />{' '}
+  <div className="container flex pt-5 pb-8 justify-end">
+    <TextbookPagesPagination />
   </div>
 );
 

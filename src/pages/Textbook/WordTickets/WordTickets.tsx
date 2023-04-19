@@ -6,7 +6,7 @@ type Props = {
 };
 
 const WordTickets = ({ words }: Props) => (
-  <div className="container flex flex-col gap-y-3 my-5">
+  <div className="container flex flex-col gap-y-3">
     {words.map((word) => (
       <WordTicket key={word.id} word={word} />
     ))}
