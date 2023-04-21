@@ -27,14 +27,14 @@ const NavBar = () => (
           <NavLink
             to={`/${link}`}
             className={({ isActive }) =>
-              classNames('relative flex gap-x-2 hover:opacity-80 ease-linear duration-200', {
+              classNames('relative flex gap-x-2 duration-200 ease-linear hover:opacity-80', {
                 'text-gray-200': !isActive,
-                'text-gray-100 after:content-[""] after:absolute after:w-full after:h-0.5 after:bg-highlite after:top-8':
+                'text-gray-100 after:absolute after:top-8 after:h-0.5 after:w-full after:bg-highlite after:content-[""]':
                   isActive,
               })
             }
           >
-            <Icon className="w-8 h-8" />
+            <Icon className="h-8 w-8" />
             <span className="text-lg">{link}</span>
             {/*  <span className="absolute w-full bg-high"></span> */}
           </NavLink>

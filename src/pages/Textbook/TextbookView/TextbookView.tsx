@@ -4,6 +4,7 @@ import TextbookFooter from '../TextbookFooter';
 import TextbookHeader from '../TextbookHeader';
 import TextbookWords from '../TextbookWords';
 import TextbookSidebar from '../TextbookSidebar';
+import ArrowButton from '../ArrowButton';
 
 const TextbookView = () => (
   <main className="flex-auto">
@@ -11,9 +12,9 @@ const TextbookView = () => (
       <TextbookHeader />
       <div className="flex justify-between pt-5">
         <TextbookSidebar />
-        {/*   <ArrowButton prev /> */}
+        <ArrowButton prev />
         <Outlet />
-        {/*   <ArrowButton /> */}
+        <ArrowButton />
       </div>
       <TextbookFooter />
     </div>

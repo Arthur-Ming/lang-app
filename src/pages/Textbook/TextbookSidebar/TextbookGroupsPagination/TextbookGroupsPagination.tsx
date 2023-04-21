@@ -32,10 +32,14 @@ const TextbookGroupsPagination = () => {
           key={group}
         >
           <LabelIcon
-            className={classNames(
-              'absolute left-2/4 -translate-x-2/4 -top-0.5 w-6 h-6',
-              `text-group-${group}`
-            )}
+            className={classNames('absolute left-2/4 -translate-x-2/4 -top-0.5 w-6 h-6', {
+              'text-group-1': group === 1,
+              'text-group-2': group === 2,
+              'text-group-3': group === 3,
+              'text-group-4': group === 4,
+              'text-group-5': group === 5,
+              'text-group-6': group === 6,
+            })}
           />
           <span className="text-lg text-gray-200">{`Глава ${group}`}</span>
         </button>
