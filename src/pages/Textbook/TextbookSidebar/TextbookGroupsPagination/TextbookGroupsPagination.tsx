@@ -4,7 +4,10 @@ import { ReactComponent as LabelIcon } from './label.svg';
 import { GROUP_COUNT } from '@/constants';
 import clientRoutes from '@/utils/clientRoutes';
 
-const textbookGroups = Array.from(Array(GROUP_COUNT), (_, index) => index + 1);
+const textbookGroups = Array.from(Array(GROUP_COUNT), (_, index) => ({
+  group: index + 1,
+  color: `text-group-${index + 1}`,
+}));
 
 const TextbookGroupsPagination = () => {
   const { page = 1, group: currentGroup } = useParams(); // fix: page from localStor
@@ -20,10 +23,10 @@ const TextbookGroupsPagination = () => {
 
   return (
     <div className="flex flex-col gap-y-1 overflow-hidden px-1 py-1">
-      {textbookGroups.map((group) => (
+      {textbookGroups.map(({ group, color }) => (
         <button
           className={classNames(
-            'flex flex-col justify-end items-center gap-x-1 py-1 pb-1 relative h-14 bg-section-dark rounded-lg',
+            'relative flex h-14 flex-col items-center justify-end gap-x-1 rounded-lg bg-section-dark py-1 pb-1',
             {
               'outline outline-1 outline-highlite': Number(currentGroup) === group,
             }
@@ -32,14 +35,17 @@ const TextbookGroupsPagination = () => {
           key={group}
         >
           <LabelIcon
-            className={classNames('absolute left-2/4 -translate-x-2/4 -top-0.5 w-6 h-6', {
+            className={classNames(
+              'absolute -top-0.5 left-2/4 h-6 w-6 -translate-x-2/4',
+              color /* {
               'text-group-1': group === 1,
               'text-group-2': group === 2,
               'text-group-3': group === 3,
               'text-group-4': group === 4,
               'text-group-5': group === 5,
               'text-group-6': group === 6,
-            })}
+            } */
+            )}
           />
           <span className="text-lg text-gray-200">{`Глава ${group}`}</span>
         </button>
@@ -47,7 +53,7 @@ const TextbookGroupsPagination = () => {
 
       <button
         className={classNames(
-          'flex flex-col justify-end items-center gap-x-1 py-1 pb-1 relative h-16 bg-section-dark rounded-lg',
+          'relative flex h-16 flex-col items-center justify-end gap-x-1 rounded-lg bg-section-dark py-1 pb-1',
           {
             'outline outline-1 outline-highlite': isUserWords,
           }

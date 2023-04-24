@@ -15,7 +15,7 @@ const Textbook = () => {
     };
     syncTextbookParamsToStorage();
   }, [page, group]);
-  useLoadUserWordsQuery();
+  /*   useLoadUserWordsQuery(); */
 
   const match = useMatch(`${clientRoutes.textbook.words.absolute()}/*`);
   const match2 = useMatch('textbook/user-words');

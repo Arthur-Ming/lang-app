@@ -34,7 +34,7 @@ const ArrowButton = ({ prev, isWordsloading }: Props) => {
     }
   };
   return (
-    <div className="sticky top-10 h-screen w-14 shrink-0 grow">
+    <div className="sticky top-10 mb-[30vh] mt-[40vh] h-screen w-14 shrink-0 grow">
       {prev ? (
         <button
           className="absolute left-1/2  top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-full opacity-30 duration-200 ease-linear hover:opacity-60 disabled:opacity-10"

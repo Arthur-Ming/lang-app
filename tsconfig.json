@@ -83,6 +83,9 @@
       ],
       "@Modal/*": [
         "src/components/Modal/*"
+      ],
+      "@AudioButton/*": [
+        "src/components/AudioButton/*"
       ]
     }
   },

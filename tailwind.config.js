@@ -40,6 +40,7 @@ export default {
       'group-4': 'rgb(255,118,248)',
       'group-5': 'rgb(34,153,235)',
       'group-6': 'rgb(141, 87, 196)',
+      highlite: 'rgb(255,165,0)',
     },
   },
   plugins: [],
