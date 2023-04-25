@@ -15,7 +15,11 @@ type Props = StateProps & OwnProps;
 
 const WordMeaning = ({ textMeaning, textMeaningTranslate, isCurrentAudioPath }: Props) => {
   return (
-    <div>
+    <div
+      className={classNames({
+        'text-gray-100': isCurrentAudioPath,
+      })}
+    >
       <h4 dangerouslySetInnerHTML={{ __html: textMeaning }}></h4>
       <h4>{textMeaningTranslate}</h4>
     </div>

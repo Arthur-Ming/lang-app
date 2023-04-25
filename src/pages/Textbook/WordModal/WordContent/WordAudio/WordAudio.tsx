@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import AudioButton from '../../../../../components/audio-button';
-import { wordAudioStop, wordFullAudioPlay } from '../../../../../redux/actions/audio';
-import { currentAudioWordIdSelector } from '../../../../../redux/selectors/audio';
-import { AppDispatch, RootState } from '../../../../../redux/store';
-import styles from './index.module.scss';
+import AudioButton from '@components/AudioButton';
+import { AppDispatch, RootState } from '@/redux/store';
+import { currentAudioWordIdSelector } from '@/redux/selectors/audio';
+import { wordAudioStop, wordFullAudioPlay } from '@/redux/actions/audio';
 
 interface OwnProps {
   wordId: string;
@@ -29,8 +28,6 @@ const WordAudio = ({ isCurrentAudio, onAudioStart, onAudioStop }: Props) => {
       isCurrentAudio={isCurrentAudio}
       onAudioStart={onAudioStart}
       onAudioStop={onAudioStop}
-      audioClass={styles.audioClass}
-      muteClass={styles.audioClass}
     />
   );
 };
@@ -45,5 +42,3 @@ const mapDispatchToProps = (dispatch: AppDispatch, ownProps: OwnProps) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WordAudio);
-
-/* export default WordAudio; */
