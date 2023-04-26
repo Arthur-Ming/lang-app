@@ -1,7 +1,11 @@
+import Features from './Features';
+
 const Main = () => {
   return (
-    <main className="flex-auto">
-      <div>Main</div>
+    <main className="flex-grow">
+      <div className="container pt-20">
+        <Features />
+      </div>
     </main>
   );
 };
