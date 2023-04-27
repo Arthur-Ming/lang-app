@@ -89,6 +89,15 @@
       ],
       "@Games/*": [
         "src/pages/Games/*"
+      ],
+      "@PageRange/*": [
+        "src/components/PageRange/*"
+      ],
+      "@GroupItem/*": [
+        "src/components/GroupItem/*"
+      ],
+      "@GroupPicker/*": [
+        "src/components/GroupPicker/*"
       ]
     }
   },
