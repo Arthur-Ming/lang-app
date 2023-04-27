@@ -22,6 +22,7 @@ export default {
     },
     outlineColor: {
       highlite: 'rgb(255,165,0)',
+      'blue-100': 'rgb(0,121,191)',
     },
 
     backgroundColor: {

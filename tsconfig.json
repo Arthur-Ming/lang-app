@@ -86,6 +86,9 @@
       ],
       "@AudioButton/*": [
         "src/components/AudioButton/*"
+      ],
+      "@Games/*": [
+        "src/pages/Games/*"
       ]
     }
   },
