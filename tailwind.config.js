@@ -35,7 +35,8 @@ export default {
       highlite: 'rgb(255,165,0)',
       'blue-100': 'rgb(0,121,191)',
       'blue-200': 'rgb(2, 65, 102)',
-      //2, 65, 102
+      success: '#238636',
+      fail: '#f85149',
     },
     textColor: {
       'gray-100': 'rgb(201,209,217)',
@@ -48,6 +49,8 @@ export default {
       'group-6': 'rgb(141, 87, 196)',
       'blue-100': 'rgb(0,121,191)',
       highlite: 'rgb(255,165,0)',
+      success: '#238636',
+      fail: '#f85149',
     },
   },
   plugins: [],

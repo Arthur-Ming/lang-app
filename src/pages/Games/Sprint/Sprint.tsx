@@ -2,6 +2,7 @@ import useTextbookPageParams from '@/hooks/useTextbookPageParams';
 import { ISprintResult } from '@/types';
 import { useState } from 'react';
 import SprintEntry from './SprintEntry';
+import SprintGame from './SprintGame';
 
 type Props = {
   results?: ISprintResult[];
@@ -11,10 +12,10 @@ const Sprint = ({ results }: Props) => {
   const { group, page } = useTextbookPageParams();
   const [selectedGroup, setSelectedGroup] = useState(group);
   const [pageRange, setPageRange] = useState([1, page]);
-  const [isGame, setIsGame] = useState(false);
+  const [isGame, setIsGame] = useState(true);
   const [isShowResult, setShowResult] = useState(Boolean(results));
 
-  /* if (isGame) return <SprintGame group={selectedGroup} pageRange={pageRange} />; */
+  if (isGame) return <SprintGame group={selectedGroup} pageRange={pageRange} />;
 
   const onPlay = () => {
     setIsGame(true);

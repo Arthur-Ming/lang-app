@@ -98,6 +98,12 @@
       ],
       "@GroupPicker/*": [
         "src/components/GroupPicker/*"
+      ],
+      "@SprintGame/*": [
+        "src/hooks/SprintGame/*"
+      ],
+      "@CircleTimer/*": [
+        "src/components/CircleTimer/*"
       ]
     }
   },
