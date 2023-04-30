@@ -25,6 +25,14 @@ export default {
       'blue-100': 'rgb(0,121,191)',
     },
 
+    borderColor: {
+      'blue-100': 'rgb(0,121,191)',
+      'blue-200': 'rgb(2, 65, 102)',
+      'gray-100': 'rgb(201,209,217)',
+      'gray-200': 'rgb(135,137,139)',
+      fail: '#f85149',
+    },
+
     backgroundColor: {
       'modal-dark': 'rgba(0, 0, 0, 0.6)',
       'header-dark': 'rgb(22,27,34)',
@@ -48,6 +56,7 @@ export default {
       'group-5': 'rgb(34,153,235)',
       'group-6': 'rgb(141, 87, 196)',
       'blue-100': 'rgb(0,121,191)',
+      'blue-200': 'rgb(2, 65, 102)',
       highlite: 'rgb(255,165,0)',
       success: '#238636',
       fail: '#f85149',

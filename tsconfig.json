@@ -104,6 +104,9 @@
       ],
       "@CircleTimer/*": [
         "src/components/CircleTimer/*"
+      ],
+      "@Auth/*": [
+        "src/pages/Auth/*"
       ]
     }
   },

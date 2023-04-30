@@ -18,9 +18,9 @@ const AuthLink = ({ userName = 'dbdbf', isAuth = false }: Props) => {
     ); */
 
   return (
-    <NavLink to={`/login`} className="flex gap-x-5 items-center text-zinc-300">
+    <NavLink to={`/login`} className="text-zinc-300 flex items-center gap-x-5">
       <span className="text-lg">войти</span>
-      <UserIcon className="w-6 h-6" />
+      <UserIcon className="h-6 w-6" />
     </NavLink>
   );
 };
