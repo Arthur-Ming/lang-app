@@ -10,6 +10,7 @@ import TextbookWord from '@pages/Textbook/TextbookWords/TextbookWord';
 import Games from '@pages/Games';
 import Sprint from '@pages/Games/Sprint';
 import Login from '@pages/Auth/Login';
+import Register from '@pages/Auth/Register';
 
 const App = () => (
   <div className="relative flex min-h-screen w-full flex-col bg-main-dark">
@@ -27,6 +28,7 @@ const App = () => (
           {/*  <Route path="audiochallenge" element={<AudioChallenge />} />  */}
         </Route>
         <Route path={`login`} element={<Login />} />
+        <Route path={`register`} element={<Register />} />
       </Routes>
       <Footer />
     </Router>
