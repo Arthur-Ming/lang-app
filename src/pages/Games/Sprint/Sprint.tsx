@@ -3,6 +3,7 @@ import { ISprintResult } from '@/types';
 import { useState } from 'react';
 import SprintEntry from './SprintEntry';
 import SprintGame from './SprintGame';
+import SprintResultModal from './SprintResultModal';
 
 type Props = {
   results?: ISprintResult[];
@@ -12,7 +13,7 @@ const Sprint = ({ results }: Props) => {
   const { group, page } = useTextbookPageParams();
   const [selectedGroup, setSelectedGroup] = useState(group);
   const [pageRange, setPageRange] = useState([1, page]);
-  const [isGame, setIsGame] = useState(true);
+  const [isGame, setIsGame] = useState(false);
   const [isShowResult, setShowResult] = useState(Boolean(results));
 
   if (isGame) return <SprintGame group={selectedGroup} pageRange={pageRange} />;
@@ -30,11 +31,9 @@ const Sprint = ({ results }: Props) => {
         pageRange={pageRange}
         setPageRange={setPageRange}
       />
-      {results &&
-        isShowResult &&
-        {
-          /* <SprintResultModal results={results} onClose={() => setShowResult(false)} onPlay={onPlay} /> */
-        }}
+      {results && isShowResult && (
+        <SprintResultModal results={results} onClose={() => setShowResult(false)} onPlay={onPlay} />
+      )}
     </>
   );
 };
