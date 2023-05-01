@@ -1,7 +1,7 @@
-import { IUserWords, IWord } from '../../interfaces';
-import { arrToMap } from '../../utils/arrToMap';
-import { getUserId } from '../../utils/cookies';
+import { IUserWords, IWord } from '@/types';
 import { api } from './';
+import { getUserId } from '@/utils/cookies';
+import { arrToMap } from '@/utils/arrToMap';
 
 interface IUserWordsBody {
   wordId: string;

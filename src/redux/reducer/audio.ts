@@ -1,5 +1,5 @@
+import { IAudioAction } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAudioAction } from '../../interfaces';
 
 export interface IAudioState {
   error: null | unknown;

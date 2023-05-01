@@ -1,5 +1,5 @@
+import { SprintGamePoints } from '@/types';
 import { useEffect, useState } from 'react';
-import { SprintGamePoints } from '../../interfaces';
 
 const useSprintGamePointsSum = (gamePoints: SprintGamePoints[]) => {
   const [gamePointsSum, setGamePointsSum] = useState(0);

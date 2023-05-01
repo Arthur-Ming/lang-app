@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { ISignInAction } from '../../interfaces';
 import { FAILURE, REQUEST, SIGN_IN, SIGN_OUT, SUCCESS } from '../action-types';
+import { ISignInAction } from '@/types';
 
 export interface IUserState {
   loading: boolean;

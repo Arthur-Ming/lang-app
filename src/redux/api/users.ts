@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
-import { IUser, ILoginBody } from '../../interfaces';
 import { login } from '../reducer/session';
 import { api } from './';
+import { ILoginBody, IUser } from '@/types';
 
 class AppError extends Error {
   status: number | undefined;
