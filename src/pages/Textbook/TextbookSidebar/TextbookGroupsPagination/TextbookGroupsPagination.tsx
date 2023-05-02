@@ -24,7 +24,12 @@ const TextbookGroupsPagination = () => {
   return (
     <div className="flex flex-col gap-y-1 overflow-hidden px-1 py-1">
       {textbookGroups.map(({ group, color }) => (
-        <GroupItem onSelect={handleGroupClick} group={group} selectedGroup={Number(currentGroup)} />
+        <GroupItem
+          key={group}
+          onSelect={handleGroupClick}
+          group={group}
+          selectedGroup={Number(currentGroup)}
+        />
       ))}
 
       <button

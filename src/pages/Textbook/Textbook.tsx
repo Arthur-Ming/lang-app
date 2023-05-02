@@ -4,6 +4,7 @@ import clientRoutes from '@/utils/clientRoutes';
 import { useEffect } from 'react';
 import { Navigate, useMatch } from 'react-router';
 import TextbookView from './TextbookView';
+import useLoadUserWords from '@/hooks/useLoadUserWords';
 
 const Textbook = () => {
   const { page, group } = useTextbookPageParams();
@@ -15,7 +16,8 @@ const Textbook = () => {
     };
     syncTextbookParamsToStorage();
   }, [page, group]);
-  /*   useLoadUserWordsQuery(); */
+
+  useLoadUserWords();
 
   const match = useMatch(`${clientRoutes.textbook.words.absolute()}/*`);
   const match2 = useMatch('textbook/user-words');

@@ -1,35 +1,43 @@
 import { IUserWords, IWord } from '@/types';
 import { api } from './';
-import { getUserId } from '@/utils/cookies';
+import { getToken, getUserId } from '@/utils/cookies';
 import { arrToMap } from '@/utils/arrToMap';
 
 interface IUserWordsBody {
   wordId: string;
 }
 
+const getHeaders = (token?: string) => {
+  const headers = new Headers();
+  if (token) headers.append('Authorization', `Bearer ${token}`);
+  headers.append('Content-Type', 'application/json;charset=utf-8');
+  return headers;
+};
+
 export const userWordsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     loadUserWords: builder.query<{ [key: string]: IWord }, void>({
       query: () => {
-        const userId = getUserId();
+        let token = getToken();
         return {
-          url: `/users/${userId}/words`,
+          headers: getHeaders(token),
+          url: `/users/words`,
           method: 'GET',
         };
       },
 
       transformResponse: (response: IUserWords) => arrToMap(response.words),
     }),
-    addUserWord: builder.mutation<IWord, IWord>({
-      query: (word) => {
-        const userId = getUserId();
-
+    addUserWord: builder.mutation<IWord, { word: IWord }>({
+      query: ({ word }) => {
+        let token = getToken();
         return {
-          url: `/users/${userId}/words/${word.id}`,
+          headers: getHeaders(token),
+          url: `/users/words/${word.id}`,
           method: 'POST',
         };
       },
-      async onQueryStarted(word, { queryFulfilled, dispatch }) {
+      async onQueryStarted({ word }, { queryFulfilled, dispatch }) {
         const patchResult = dispatch(
           userWordsApi.util.updateQueryData('loadUserWords', undefined, (draft) => {
             draft[word.id] = word;
@@ -42,15 +50,16 @@ export const userWordsApi = api.injectEndpoints({
         }
       },
     }),
-    removeUserWord: builder.mutation<IUserWords, IWord>({
-      query: (word) => {
-        const userId = getUserId();
+    removeUserWord: builder.mutation<IUserWords, { word: IWord }>({
+      query: ({ word }) => {
+        let token = getToken();
         return {
-          url: `/users/${userId}/words/${word.id}`,
+          headers: getHeaders(token),
+          url: `/users/words/${word.id}`,
           method: 'DELETE',
         };
       },
-      async onQueryStarted(word, { queryFulfilled, dispatch }) {
+      async onQueryStarted({ word }, { queryFulfilled, dispatch }) {
         const patchResult = dispatch(
           userWordsApi.util.updateQueryData('loadUserWords', undefined, (draft) => {
             delete draft[word.id];
@@ -73,5 +82,3 @@ export const {
   useRemoveUserWordMutation,
   useLazyLoadUserWordsQuery,
 } = userWordsApi;
-
-export const { useQueryState: useLoadUserWordsQueryState } = userWordsApi.endpoints.loadUserWords;

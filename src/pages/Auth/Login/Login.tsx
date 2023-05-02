@@ -1,10 +1,10 @@
-import { useLoginUserMutation } from '@/redux/api/users';
+import { useLoginMutation } from '@/redux/api/auth';
 import AuthLayout from '../AuthLayout';
 import LoginForm from './LoginForm';
 import { NavLink } from 'react-router-dom';
 
 const Login = () => {
-  const [login, { isLoading }] = useLoginUserMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   return (
     <AuthLayout>

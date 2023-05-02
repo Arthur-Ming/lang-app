@@ -1,44 +1,39 @@
 import classNames from 'classnames';
 import { AiFillFire } from 'react-icons/ai';
-import { connect } from 'react-redux';
 import { IWord } from '@/types';
-import { useAddUserWordMutation, useRemoveUserWordMutation } from '@/redux/api/userWords';
-import { RootState } from '@/redux/store';
-import { userWordsByIdSelector } from '@/redux/selectors/userWords';
+import {
+  useAddUserWordMutation,
+  useLoadUserWordsQuery,
+  useRemoveUserWordMutation,
+} from '@/redux/api/userWords';
 
-type StateProps = {
-  isChosen: boolean;
-};
-
-type OwnProps = {
+type Props = {
   word: IWord;
 };
-
-type Props = OwnProps & StateProps;
-
-const WordChosen = ({ word, isChosen }: Props) => {
+const WordChosen = ({ word }: Props) => {
   const [addUserWord] = useAddUserWordMutation();
   const [removeUserWord] = useRemoveUserWordMutation();
+  const { isUsersWord } = useLoadUserWordsQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      isUsersWord: data && data[word.id] ? true : false,
+    }),
+  });
 
   return (
     <AiFillFire
       className={classNames('h-6 w-6 cursor-pointer text-gray-200', {
-        'text-highlite': isChosen,
+        'text-highlite': isUsersWord,
       })}
       onClick={(e) => {
         e.stopPropagation();
-        if (isChosen) {
-          removeUserWord(word);
+        if (isUsersWord) {
+          removeUserWord({ word });
         } else {
-          addUserWord(word);
+          addUserWord({ word });
         }
       }}
     />
   );
 };
 
-const mapStateToProps = (state: RootState, { word }: OwnProps) => ({
-  isChosen: Boolean(userWordsByIdSelector(state, { wordId: word.id })),
-});
-
-export default connect(mapStateToProps)(WordChosen);
+export default WordChosen;

@@ -1,10 +1,10 @@
-import { useRegisterUserMutation } from '@/redux/api/users';
+import { useRegisterMutation } from '@/redux/api/auth';
 import AuthLayout from '../AuthLayout';
 import RegisterForm from './RegisterForm';
 import { NavLink } from 'react-router-dom';
 
 const Register = () => {
-  const [signUp, { isLoading }] = useRegisterUserMutation();
+  const [signUp, { isLoading }] = useRegisterMutation();
 
   return (
     <AuthLayout>

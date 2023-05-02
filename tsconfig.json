@@ -107,6 +107,9 @@
       ],
       "@Auth/*": [
         "src/pages/Auth/*"
+      ],
+      "@AppRoutes/*": [
+        "src/App/AppRoutes/*"
       ]
     }
   },
