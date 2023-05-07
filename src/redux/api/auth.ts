@@ -84,7 +84,5 @@ const authApi = api.injectEndpoints({
   }),
   overrideExisting: false,
 });
-console.log(authApi);
-export const { useRegisterMutation, useLoginMutation, useGetUserQuery } = authApi;
 
-export const { getUser } = authApi.endpoints;
+export const { useRegisterMutation, useLoginMutation, useGetUserQuery } = authApi;
