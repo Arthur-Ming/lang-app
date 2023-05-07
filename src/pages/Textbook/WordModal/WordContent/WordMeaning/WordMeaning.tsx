@@ -20,8 +20,8 @@ const WordMeaning = ({ textMeaning, textMeaningTranslate, isCurrentAudioPath }: 
         'text-gray-100': isCurrentAudioPath,
       })}
     >
-      <h4 dangerouslySetInnerHTML={{ __html: textMeaning }}></h4>
-      <h4>{textMeaningTranslate}</h4>
+      <h4 className="text-center" dangerouslySetInnerHTML={{ __html: textMeaning }}></h4>
+      <h4 className="text-center">{textMeaningTranslate}</h4>
     </div>
   );
 };

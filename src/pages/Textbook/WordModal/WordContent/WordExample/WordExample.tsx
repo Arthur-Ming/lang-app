@@ -20,8 +20,8 @@ const WordExample = ({ textExample, textExampleTranslate, isCurrentAudioPath }: 
         'text-gray-100': isCurrentAudioPath,
       })}
     >
-      <h4 dangerouslySetInnerHTML={{ __html: textExample }}></h4>
-      <h4>{textExampleTranslate}</h4>
+      <h4 className="text-center" dangerouslySetInnerHTML={{ __html: textExample }}></h4>
+      <h4 className="text-center">{textExampleTranslate}</h4>
     </div>
   );
 };

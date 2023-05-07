@@ -27,16 +27,16 @@ const WordContent = ({ word }: Props) => {
     audioExample,
   } = word;
   return (
-    <div className="flex gap-x-7">
-      <div className="flex  flex-auto items-center justify-center">
+    <div className="flex flex-col gap-y-6">
+      <div className="flex flex-auto items-center justify-center">
         <img
           className="h-[260px] min-w-[400px] rounded-md"
           src={apiRoutes.files(image)}
           alt={wordText}
         />
       </div>
-      <div className="flex flex-col justify-between">
-        <div className="flex flex-grow flex-col gap-y-5 pr-5 text-xl">
+      <div className="flex flex-col justify-between gap-y-2">
+        <div className="flex flex-grow flex-col gap-y-4 pr-5 text-lg">
           <WordTranslate
             wordText={wordText}
             transcription={transcription}
@@ -54,7 +54,7 @@ const WordContent = ({ word }: Props) => {
             audio={audioExample}
           />
         </div>
-        <div className="mt-5 flex items-center justify-between">
+        <div className="flex items-center justify-between px-4">
           <WordAudio
             wordId={wordId}
             audio={audio}
