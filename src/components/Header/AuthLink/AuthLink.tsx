@@ -1,4 +1,4 @@
-import { getUser, useGetUserQuery } from '@/redux/api/auth';
+import { useGetUserQuery } from '@/redux/api/auth';
 import { ReactComponent as UserIcon } from './user.svg';
 import { NavLink } from 'react-router-dom';
 import { api } from '@/redux/api';

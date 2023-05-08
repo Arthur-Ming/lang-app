@@ -16,7 +16,7 @@ const LoginForm = ({ isLoading, onSubmit }: Props) => {
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onBlur' });
   return (
-    <form className="flex flex-col items-center gap-y-4">
+    <form className="flex flex-col items-center gap-y-8">
       <label className="relative flex w-full flex-col gap-y-2">
         <span className="text-xl text-gray-200">Email</span>
         <input
@@ -25,9 +25,9 @@ const LoginForm = ({ isLoading, onSubmit }: Props) => {
           autoComplete="off"
           placeholder="email"
           className={classNames(
-            'h-10 rounded-lg border-2 border-gray-200 bg-gray-100 px-5 py-6 text-xl outline-none focus:border-2 focus:border-blue-100',
+            'h-10 rounded-lg border-x border-y border-gray-200 bg-section-dark px-5 py-6 text-xl text-gray-200 outline-none placeholder:opacity-30 focus:border-blue-100',
             {
-              'border-fail': errors.email,
+              'border-fail focus:border-fail': errors.email,
             }
           )}
           {...register('email', {
@@ -46,9 +46,9 @@ const LoginForm = ({ isLoading, onSubmit }: Props) => {
           type="password"
           placeholder="password"
           className={classNames(
-            'h-10 rounded-lg border-2 border-gray-200 bg-gray-100 px-5 py-6 text-xl outline-none focus:border-2 focus:border-blue-100',
+            'h-10 rounded-lg border-x border-y border-gray-200 bg-section-dark px-5 py-6 text-xl text-gray-200 outline-none placeholder:opacity-30 focus:border-blue-100',
             {
-              'border-fail': errors.email,
+              'border-fail focus:border-fail': errors.password,
             }
           )}
           {...register('password', {
@@ -66,7 +66,7 @@ const LoginForm = ({ isLoading, onSubmit }: Props) => {
         )}
       </label>
       <input
-        className="mb-5 mt-5 h-11 w-52 cursor-pointer rounded-lg bg-blue-200 text-lg font-semibold text-gray-100 duration-200 hover:bg-blue-100"
+        className="mt-10 h-11 min-w-[208px] cursor-pointer rounded-lg bg-blue-200 px-6 text-lg font-semibold text-gray-100 duration-200 hover:bg-blue-100"
         onClick={handleSubmit(onSubmit)}
         type="submit"
         value="Войти"
