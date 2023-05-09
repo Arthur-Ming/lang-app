@@ -1,7 +1,7 @@
 import { useRegisterMutation } from '@/redux/api/auth';
 import AuthLayout from '../AuthLayout';
 import RegisterForm from './RegisterForm';
-import { NavLink } from 'react-router-dom';
+import AuthFooter from '../AuthFooter';
 
 const Register = () => {
   const [signUp, { isLoading }] = useRegisterMutation();
@@ -9,12 +9,7 @@ const Register = () => {
   return (
     <AuthLayout>
       <RegisterForm isLoading={isLoading} onSubmit={signUp} />
-      <div className="m-8 flex justify-center gap-x-2 gap-y-2">
-        <span className="text-xl text-gray-200">Уже есть аккаунт?</span>
-        <NavLink className="text-xl text-blue-100" to="/login">
-          Войдите
-        </NavLink>
-      </div>
+      <AuthFooter title="Уже есть аккаунт?" linkTitle="Войдите" linkTo="/login" />
     </AuthLayout>
   );
 };
