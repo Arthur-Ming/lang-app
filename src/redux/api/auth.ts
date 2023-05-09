@@ -1,7 +1,6 @@
 import Cookies from 'js-cookie';
-import { api } from '.';
-import { ILoginBody, IUser } from '@/types';
-import { getToken } from '@/utils/cookies';
+import { api, httpClient } from '.';
+import { authRoutes } from './apiRoutes';
 
 class AppError extends Error {
   status: number | undefined;
@@ -30,12 +29,8 @@ const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query<any, void>({
       query: () => {
-        let token = getToken();
-        return {
-          headers: getHeaders(token),
-          url: `/auth/user`,
-          method: 'GET',
-        };
+        const { getUrl, isProtected } = authRoutes.user;
+        return httpClient.get({ url: getUrl(), isProtected });
       },
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
@@ -48,11 +43,8 @@ const authApi = api.injectEndpoints({
     }),
     login: builder.mutation({
       query: (body) => {
-        return {
-          url: `/auth/login`,
-          method: 'POST',
-          body,
-        };
+        const { getUrl, isProtected } = authRoutes.login;
+        return httpClient.post({ url: getUrl(), isProtected, body });
       },
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
@@ -61,24 +53,21 @@ const authApi = api.injectEndpoints({
           Cookies.set('token', token, {
             expires: tokenExpire,
           });
-
-          /*  dispatch(login({ name, email })); */
         } catch (error) {}
       },
     }),
     register: builder.mutation({
       query: (body) => {
         console.log(body);
-        return {
-          url: `/auth/register`,
-          method: 'POST',
-          body,
-        };
+        const { getUrl, isProtected } = authRoutes.register;
+        return httpClient.post({ url: getUrl(), isProtected, body });
       },
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
-        } catch (error) {}
+        } catch (error) {
+          console.log(error);
+        }
       },
     }),
   }),

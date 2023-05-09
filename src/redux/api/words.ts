@@ -1,5 +1,6 @@
 import { IWord } from '@/types';
-import { api } from './';
+import { api, httpClient } from './';
+import { wordsRoutes } from './apiRoutes';
 
 interface ILoadWordsParams {
   page?: number | string;
@@ -10,13 +11,8 @@ const wordsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     loadWords: builder.query<IWord[], ILoadWordsParams>({
       query: ({ page, group }) => {
-        return {
-          url: `/words`,
-          params: {
-            page,
-            group,
-          },
-        };
+        const { getUrl, isProtected } = wordsRoutes.words;
+        return httpClient.get({ url: getUrl(group, page), isProtected });
       },
     }),
   }),
@@ -24,4 +20,3 @@ const wordsApi = api.injectEndpoints({
 });
 
 export const { useLoadWordsQuery, useLazyLoadWordsQuery } = wordsApi;
-export const { useQueryState: useLoadWordsQueryState } = wordsApi.endpoints.loadWords;

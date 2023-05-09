@@ -1,7 +1,8 @@
 import { IUserWords, IWord } from '@/types';
-import { api } from './';
-import { getToken, getUserId } from '@/utils/cookies';
+import { api, httpClient } from './';
+import { getToken } from '@/utils/cookies';
 import { arrToMap } from '@/utils/arrToMap';
+import { userWordsRoutes } from './apiRoutes';
 
 interface IUserWordsBody {
   wordId: string;
@@ -18,24 +19,16 @@ export const userWordsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     loadUserWords: builder.query<{ [key: string]: IWord }, void>({
       query: () => {
-        let token = getToken();
-        return {
-          headers: getHeaders(token),
-          url: `/users/words`,
-          method: 'GET',
-        };
+        const { getUrl, isProtected } = userWordsRoutes.words;
+        return httpClient.get({ url: getUrl(), isProtected });
       },
 
       transformResponse: (response: IUserWords) => arrToMap(response.words),
     }),
     addUserWord: builder.mutation<IWord, { word: IWord }>({
       query: ({ word }) => {
-        let token = getToken();
-        return {
-          headers: getHeaders(token),
-          url: `/users/words/${word.id}`,
-          method: 'POST',
-        };
+        const { getUrl, isProtected } = userWordsRoutes.wordById;
+        return httpClient.post({ url: getUrl(word.id), isProtected });
       },
       async onQueryStarted({ word }, { queryFulfilled, dispatch }) {
         const patchResult = dispatch(
@@ -46,18 +39,15 @@ export const userWordsApi = api.injectEndpoints({
         try {
           await queryFulfilled;
         } catch (error) {
+          console.log(error);
           patchResult.undo();
         }
       },
     }),
     removeUserWord: builder.mutation<IUserWords, { word: IWord }>({
       query: ({ word }) => {
-        let token = getToken();
-        return {
-          headers: getHeaders(token),
-          url: `/users/words/${word.id}`,
-          method: 'DELETE',
-        };
+        const { getUrl, isProtected } = userWordsRoutes.wordById;
+        return httpClient.delete({ url: getUrl(word.id), isProtected });
       },
       async onQueryStarted({ word }, { queryFulfilled, dispatch }) {
         const patchResult = dispatch(

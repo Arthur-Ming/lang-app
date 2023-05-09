@@ -2,38 +2,44 @@
 // status >= 400 is an error
 // network error / json error are errors
 
-export default async function (url: string, params?: RequestInit) {
-  let response;
+/* interface G extends RequestInit, Body {
+  url: string;
+} */
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface IParams<T> {
+  url: string;
+  body?: T;
+  config?: RequestInit;
+}
+export default async function <T>({ url, body, config }: IParams<T>) {
+  let response;
+  const params = { body: JSON.stringify(body), ...config };
   try {
     response = await fetch(url, params);
   } catch (err) {
-    console.log((err as Error).name);
-    if ((err as { name: string }).name == 'AbortError') {
-      console.log((err as { name: string }).name);
-    }
     throw new FetchError(response, 'Network error has occurred.');
   }
 
-  let body;
+  let errorBody;
 
   if (!response.ok) {
     let errorText = response.statusText; // Not Found (for 404)
 
     try {
-      body = await response.json();
+      errorBody = await response.json();
 
       errorText =
-        (body.error && body.error.message) ||
-        (body.data && body.data.error && body.data.error.message) ||
+        (errorBody.error && errorBody.error.message) ||
+        (errorBody.data && errorBody.data.error && errorBody.data.error.message) ||
         errorText;
     } catch (error) {
       /* ignore failed body */
     }
 
-    const message = `Error ${response.status}: ${errorText}`;
+    const message = errorText;
 
-    throw new FetchError(response, body, message);
+    throw new FetchError(response, errorBody, message);
   }
 
   try {

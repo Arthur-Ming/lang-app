@@ -8,11 +8,3 @@ export const getToken = (): string => {
   }
   return token;
 };
-
-export const getUserId = (): string => {
-  const userId = Cookies.get('userId') || null;
-  if (!userId) {
-    throw new AuthorizationError();
-  }
-  return userId;
-};
