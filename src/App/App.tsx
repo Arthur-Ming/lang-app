@@ -3,6 +3,8 @@ import Footer from '@components/Footer';
 import Header from '@components/Header';
 import AppRoutes from './AppRoutes';
 import { useGetUserQuery } from '@/redux/api/auth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   useGetUserQuery();
@@ -13,6 +15,7 @@ const App = () => {
         <AppRoutes />
         <Footer />
       </Router>
+      <ToastContainer position="bottom-right" />
     </div>
   );
 };

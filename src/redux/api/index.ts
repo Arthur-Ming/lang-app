@@ -86,4 +86,5 @@ export const api = createApi({
     baseUrl: '',
   }),
   endpoints: () => ({}),
+  tagTypes: ['User'],
 });

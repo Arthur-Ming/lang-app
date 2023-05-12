@@ -1,29 +1,6 @@
-import Cookies from 'js-cookie';
 import { api, httpClient } from '.';
 import { authRoutes } from './apiRoutes';
-
-class AppError extends Error {
-  status: number | undefined;
-  constructor(message: string) {
-    super(message);
-  }
-}
-
-export class AuthorizationError extends AppError {
-  constructor(message: string) {
-    super(message);
-    this.status = 401;
-  }
-}
-
-const getHeaders = (token?: string) => {
-  const headers = new Headers();
-  if (token) headers.append('Authorization', `Bearer ${token}`);
-  headers.append('Content-Type', 'application/json;charset=utf-8');
-  return headers;
-};
-
-const tokenExpire = 0.5;
+import { setToken } from '@/utils/cookies';
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -32,10 +9,10 @@ const authApi = api.injectEndpoints({
         const { getUrl, isProtected } = authRoutes.user;
         return httpClient.get({ url: getUrl(), isProtected });
       },
+      providesTags: ['User'],
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
         } catch (error) {
           console.log(error);
         }
@@ -46,19 +23,19 @@ const authApi = api.injectEndpoints({
         const { getUrl, isProtected } = authRoutes.login;
         return httpClient.post({ url: getUrl(), isProtected, body });
       },
+      invalidatesTags: (result, error, arg) => {
+        const { token } = result;
+        setToken(token);
+        return ['User'];
+      },
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
-          const { data } = await queryFulfilled;
-          const { token } = data;
-          Cookies.set('token', token, {
-            expires: tokenExpire,
-          });
+          await queryFulfilled;
         } catch (error) {}
       },
     }),
     register: builder.mutation({
       query: (body) => {
-        console.log(body);
         const { getUrl, isProtected } = authRoutes.register;
         return httpClient.post({ url: getUrl(), isProtected, body });
       },

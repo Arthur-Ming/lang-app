@@ -10,9 +10,9 @@ interface ILoadWordsParams {
 const wordsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     loadWords: builder.query<IWord[], ILoadWordsParams>({
-      query: ({ page, group }) => {
+      query: ({ group, page }) => {
         const { getUrl, isProtected } = wordsRoutes.words;
-        return httpClient.get({ url: getUrl(group, page), isProtected });
+        return httpClient.get({ url: getUrl(String(group), String(page)), isProtected });
       },
     }),
   }),
