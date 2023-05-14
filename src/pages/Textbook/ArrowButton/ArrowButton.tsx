@@ -2,24 +2,29 @@ import { ReactComponent as ArrowPrevIcon } from './arrow-prev.svg';
 import { ReactComponent as ArrowNextIcon } from './arrow-next.svg';
 import classNames from 'classnames';
 import { useMatch, useNavigate, useParams } from 'react-router';
-import { connect } from 'react-redux';
-import { RootState } from '../../../redux/store';
-
-import { DEFAULT_PAGE, PAGE_COUNT, PAGE_SHIFT } from '../../../constants';
-import clientRoutes from '../../../utils/clientRoutes';
-
-type StateProps = {
-  isWordsloading: boolean;
-};
+import clientRoutes from '@/utils/clientRoutes';
+import { DEFAULT_PAGE, PAGE_COUNT, PAGE_SHIFT } from '@/constants';
+import { useLoadWordsQuery } from '@/redux/api/words';
 
 type OwnProps = {
   prev?: boolean;
 };
 
-type Props = OwnProps & StateProps;
+type Props = OwnProps;
 
-const ArrowButton = ({ prev, isWordsloading }: Props) => {
+const ArrowButton = ({ prev }: Props) => {
   const { page = null, group = null } = useParams();
+
+  const {
+    isLoading: isWordsloading,
+    isFetching: isWordsFetching,
+    isSuccess,
+    isError,
+  } = useLoadWordsQuery({
+    page: Number(page) - 1,
+    group: Number(group) - 1,
+  });
+
   const navigate = useNavigate();
   const isHardWords = useMatch('textbook/user-words');
   const onNextClick = () => {
@@ -34,7 +39,14 @@ const ArrowButton = ({ prev, isWordsloading }: Props) => {
     }
   };
   return (
-    <div className="sticky top-10 mb-[30vh] mt-[40vh] h-screen w-14 shrink-0 grow">
+    <div
+      className={classNames('sticky top-10 mb-[30vh] mt-[40vh] w-14', {
+        'h-full': isWordsloading || isWordsFetching || isError,
+        'h-screen': !isWordsloading && !isWordsFetching && !isError,
+        invisible: !isSuccess,
+        visible: isSuccess,
+      })}
+    >
       {prev ? (
         <button
           className="absolute left-1/2  top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-full opacity-30 duration-200 ease-linear hover:opacity-60 disabled:opacity-10"
@@ -64,8 +76,4 @@ const ArrowButton = ({ prev, isWordsloading }: Props) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  isWordsloading: false,
-});
-
-export default connect(mapStateToProps)(ArrowButton);
+export default ArrowButton;

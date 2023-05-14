@@ -9,6 +9,7 @@ const TextbookWords = () => {
   const {
     isLoading,
     isFetching,
+    isError,
     data: words,
   } = useLoadWordsQuery({
     page: Number(page) - 1,
@@ -16,6 +17,8 @@ const TextbookWords = () => {
   });
 
   if (isLoading || isFetching) return <Loader />;
+  if (isError)
+    return <div className="grow text-center text-3xl text-gray-200">Something went wrong!</div>;
   return (
     <>
       {words && <WordTickets words={words} />}

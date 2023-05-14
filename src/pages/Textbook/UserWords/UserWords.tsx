@@ -10,6 +10,9 @@ const UserWords = () => {
     }),
   });
 
+  if (!userWords.length)
+    return <div className="grow text-center text-2xl text-gray-200">No data</div>;
+
   return (
     <>
       <WordTickets words={userWords} />

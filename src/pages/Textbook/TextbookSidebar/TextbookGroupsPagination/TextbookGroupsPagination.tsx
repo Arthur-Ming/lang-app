@@ -34,7 +34,7 @@ const TextbookGroupsPagination = () => {
 
       <button
         className={classNames(
-          'relative flex h-16 flex-col items-center justify-end gap-x-1 rounded-lg bg-section-dark py-1 pb-1',
+          'relative flex h-16 flex-col items-center justify-end gap-x-1 rounded-lg bg-section-dark py-1',
           {
             'outline outline-1 outline-highlite': isUserWords,
           }
