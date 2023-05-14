@@ -1,32 +1,21 @@
 import { useGetUserQuery } from '@/redux/api/auth';
 import { ReactComponent as UserIcon } from './user.svg';
 import { NavLink } from 'react-router-dom';
-import { api } from '@/redux/api';
 
-type StateProps = {
-  userName?: string | null;
-  isAuth?: boolean;
-};
+const AuthLink = () => {
+  const { data: loggedUser } = useGetUserQuery();
 
-type Props = StateProps;
-
-const AuthLink = ({ userName = 'dbdbf', isAuth = false }: Props) => {
-  /*  if (isAuth)
+  if (loggedUser)
     return (
-      <span className="flex gap-x-5">
-        {userName && <span>{userName}</span>}
-        <UserIcon />
-      </span>
-    ); */
-  // const { data: user } = getUser.useQueryState();
-
-  const { data: user } = useGetUserQuery();
+      <div className="flex items-center gap-x-5 text-gray-200">
+        <span className="text-lg">{loggedUser.name}</span>
+        <UserIcon className="h-6 w-6" />
+      </div>
+    );
 
   return (
-    <NavLink to={`/login`} className="text-zinc-300 flex items-center gap-x-5">
-      {user && user.name && <span className="text-lg">{user.name}</span>}
-      {!user && <span className="text-lg">войти</span>}
-
+    <NavLink to={`/login`} className="flex items-center gap-x-5 text-gray-200">
+      <span className="text-lg">войти</span>
       <UserIcon className="h-6 w-6" />
     </NavLink>
   );
