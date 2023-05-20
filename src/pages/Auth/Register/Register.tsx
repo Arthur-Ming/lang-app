@@ -14,6 +14,7 @@ const Register = () => {
     useRegisterMutation();
 
   const [login, { isLoading: isLoginLoading, isSuccess: isLoginSuccess }] = useLoginMutation();
+
   useEffect(() => {
     if (isRegisterSuccess && registerBody) {
       const { email, password } = registerBody;

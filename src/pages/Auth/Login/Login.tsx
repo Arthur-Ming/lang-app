@@ -7,10 +7,15 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
   const { data: loggedUser } = useGetUserQuery();
-  const [login, { isLoading, isSuccess }] = useLoginMutation();
+  const [login, { isLoading, isSuccess, isError }] = useLoginMutation();
 
   if (isSuccess) {
     toast.success('success', {
+      toastId: '',
+    });
+  }
+  if (isError) {
+    toast.error('Неверные учетные данные', {
       toastId: '',
     });
   }
